@@ -15,10 +15,11 @@ function paintMatchArray () {
 }
 
 function paintWin () {
-    // Dazzle:
-    // const m = Math.floor(Math.random() * 10);
-    // const s = Math.floor(Math.random() * 10);
-    // const p = Math.floor(Math.random() * 10);
+    const m = Math.floor(Math.random() * 10);
+    const s = Math.floor(Math.random() * 10);
+    const p = Math.floor(Math.random() * 10);
+
+    // Dazzle:    
     // const r = Math.floor(Math.random() * paintWinIndex);
     // const g = Math.floor(Math.random() * paintWinIndex);
     // const b = Math.floor(Math.random() * paintWinIndex);
@@ -26,12 +27,13 @@ function paintWin () {
     // document.getElementById(`s${s}`).setAttribute('style', `background-color: rgb(${g},${b},${r})`);
     // document.getElementById(`p${p}`).setAttribute('style', `background-color: rgb(${b},${r},${g})`);
     
-    //Decay:
-
-    //use the spread operator to convert the HTML collections to arrays:
-    document.getElementsByClassName('match').forEach(function (e) {e.setAttribute('style', `background-color: rgb(${paintWinIndex},0,0)`);});
+    //Flicker:
+    document.getElementById(`m${m}`).setAttribute('style', `background-color: rgb(${paintWinIndex},0,0)`);
     document.getElementById(`s${s}`).setAttribute('style', `background-color: rgb(0,${paintWinIndex},0)`);
     document.getElementById(`p${p}`).setAttribute('style', `background-color: rgb(0,0,${paintWinIndex})`);
+    document.getElementById(`m${s}`).setAttribute('style', `background-color: rgb(0,0,0)`);
+    document.getElementById(`s${p}`).setAttribute('style', `background-color: rgb(0,0,0)`);
+    document.getElementById(`p${m}`).setAttribute('style', `background-color: rgb(0,0,0)`);
     paintWinIndex = paintWinIndex - 5;
     if (paintWinIndex < 0) {clearInterval(win);};
 }
@@ -39,7 +41,7 @@ function paintWin () {
 function checkForWin () {
     if (!(matchArray.includes(false))) {
         clearInterval(scanning);
-        win = setInterval(paintWin, 50);
+        win = setInterval(paintWin, 75);
     }
 }
 
