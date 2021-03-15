@@ -1,0 +1,57 @@
+:root {
+    --size: 20px;
+}
+
+@media (min-width: 600px) {
+    :root {
+        --size: 50px;
+    }    
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #fed;
+}
+
+#game {
+    display: grid;
+    grid-template-columns: repeat(10,var(--size));
+    grid-template-rows: repeat(3,var(--size));
+    grid-gap: 5px;
+    background-color: rgb(50,50,50);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: -1px 5px 5px 0 black;
+}
+
+canvas {
+    height: var(--size);
+    width: var(--size);
+    background-color: black;
+    border-radius: 30%;
+    transition: all, 200ms;
+    box-shadow: inset -1px 5px 5px 0 rgba(255,255,255,0.4), -1px 1px 2px 1px rgb(0,0,0,0.3);
+}
+
+.lit-match-light {
+    background-color: rgb(215,50,50);
+}
+
+.lit-scan-light {
+    background-color: rgb(50,195,100);
+}
+
+.lit-step-light {
+    background-color: rgb(50,100,255);
+}
+
+@media (min-width: 600px) {
+    canvas {
+        border-radius: 15px;
+    }    
+}
