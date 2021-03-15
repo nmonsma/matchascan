@@ -4,9 +4,16 @@ let matchArray = [false, false, false, false, false, false, false, false, false,
 let paintWinIndex = 255;
 let win = 0;
 
+// The intial duration each scan light is on
 let scanInterval = 300;
+
+// The decay in the scanInterval upon every match:
 const accelerationQuotient = 0.9;
 
+// **
+// Main Functions:
+// **
+// Paint the top row of lights to correspond to matchArray:
 function paintMatchArray () {
     for (let i = 0; i < 10; i++) {
         const currentLight = document.getElementById(`m${i}`);
@@ -14,7 +21,8 @@ function paintMatchArray () {
     }
 }
 
-function paintWin () {
+// Celebrate winning with a sequence of flickering lights as paintWinIndex decays from 255 to 0:
+function andThereWasLight () {
     const m = Math.floor(Math.random() * 10);
     const s = Math.floor(Math.random() * 10);
     const p = Math.floor(Math.random() * 10);
@@ -38,13 +46,15 @@ function paintWin () {
     if (paintWinIndex < 0) {clearInterval(win);};
 }
 
+// Check to see if any of the items in the matchArray are false. If not, trigger the win celebration.
 function checkForWin () {
     if (!(matchArray.includes(false))) {
         clearInterval(scanning);
-        win = setInterval(paintWin, 75);
+        win = setInterval(andThereWasLight, 75);
     }
 }
 
+// If the match between scan and step has not already been made (if it is a newly-scored match), record the score in the matchArray, speed up the scan, paint the match row, and check to see if there is a win.
 function scoreMatch () {
     if (!(matchArray[stepLocation])) {
         matchArray[stepLocation] = true;
@@ -56,6 +66,7 @@ function scoreMatch () {
     }
 }
 
+// Turn off the previous scan light, advance the scanLocation index, and light up the next light:
 function scan () {
     document.getElementById(`s${scanLocation}`).classList.remove('lit-scan-light');
     scanLocation--;
@@ -63,6 +74,7 @@ function scan () {
     document.getElementById(`s${scanLocation}`).classList.add('lit-scan-light');
 }
 
+// Advance the step light and check for match with the scan light:
 function step () {
     document.getElementById(`p${stepLocation}`).classList.remove('lit-step-light');
     stepLocation++;
@@ -71,7 +83,8 @@ function step () {
     document.getElementById(`p${stepLocation}`).classList.add('lit-step-light');
 }
 
-function createLights () {
+// Create the light board:
+function letThereBeLight () {
     const gameBoard = document.getElementById('game');
     for (let i = 0; i < 10; i++) {
         const mLight = document.createElement('canvas');;
@@ -93,7 +106,10 @@ function createLights () {
     };
 }
 
-createLights ();
+// **
+// Main Events:
+// **
+letThereBeLight ();
 document.getElementById('p0').classList.add('lit-step-light');
 let scanning = setInterval (scan, scanInterval);
 window.addEventListener('click', step);
