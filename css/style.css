@@ -30,7 +30,8 @@ h1 {
     font-size: var(--h1-size);
     color: var(--background-color);
     text-align: center;
-    transition: color, 2000ms;
+    user-select: none;
+    text-shadow: -3px 4px 3px rgba(0,0,0,0.2);
 }
 
 p {
@@ -38,7 +39,8 @@ p {
     font-size: var(--p-size);
     color: var(--background-color);
     text-align: center;
-    transition: color, 2000ms;
+    user-select: none;
+    text-shadow: -3px 4px 3px rgba(0,0,0,0.2);
 }
 
 .visible {
@@ -53,7 +55,7 @@ p {
     background-color: rgb(50,50,50);
     padding: 25px;
     border-radius: 10px;
-    box-shadow: -1px 5px 5px 0 black;
+    box-shadow: -2px 3px #252525, -3px 4px #252525, -4px 5px #252525, -5px 6px #252525, -5px 6px 5px black;
 }
 
 canvas {
