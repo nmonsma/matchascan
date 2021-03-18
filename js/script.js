@@ -113,5 +113,5 @@ letThereBeLight ();
 document.getElementById('p0').classList.add('lit-step-light');
 let scanning = setInterval (scan, scanInterval);
 window.addEventListener('click', step);
-body.addEventListener('touchstart', step);
+window.addEventListener('touchstart', step);
 setInterval(function () {document.getElementsByTagName('h1')[0].classList.add('visible');document.getElementsByTagName('p')[0].classList.add('visible')}, 200);
