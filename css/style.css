@@ -23,6 +23,7 @@ body {
     align-items: center;
     justify-content: space-evenly;
     background-color: var(--background-color);
+    cursor: pointer;
 }
 
 h1 {
